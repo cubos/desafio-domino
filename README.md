@@ -103,7 +103,7 @@ A competição começa hoje, 1/11.
 
 No final do mês, dia 30/11 a primeira fase da competição acontecerá. Nessa fase, todos os BOTs serão executados em um campeonato de todos contra todos. Cada BOT jogará 3 partidas contra cada um dos outros BOTs. A pontuação será calculada da seguinte forma: 3 pontos para cada vitória, 1 ponto para cada empate e 0 pontos para cada derrota. Os 4 BOTs com mais pontos passam para a fase final.
 
-No dia 14/12, data do nosso planejamento, faremos a competição final entre esses 4: 1º contra 4º e 2º contra 3º. Os vencedores dessas partidas se enfrentam na final e os perdedores disputam o terceiro lugar. Esses jogos serão AO VIVO, NO TELÃO!
+No dia 14/12, data do nosso planejamento, faremos a competição final entre esses 4: 1º contra 3º e 2º contra 4º. Os vencedores dessas partidas se enfrentam na final e os perdedores disputam o terceiro lugar. Esses jogos serão AO VIVO, NO TELÃO!
 
 Teremos também o concuso de criatividade: aqui é simples: o BOT mais legal, inovador, inusitado ganha. Todos da Cubos votam, os mais votados ganham prêmios.
 
