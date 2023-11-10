@@ -20,7 +20,9 @@ Essas são todas as pedras do jogo:
 - `5-5`, `5-6`
 - `6-6`
 
-Dominó é jogado com duas duplas adversárias, totalizando 4 jogadores. Cada jogador recebe 7 pedras. O jogadore que tiver a peça `6-6` começa jogando ela. A partir daí, os jogadores devem jogar em sentido horário colocando suas pedras na mesa, de forma que uma das extremidades da pedra coincida com a extremidade aberta de uma das pedras que já se encontram na mesa. Um jogador só pode colocar uma pedra na mesa se ele tiver uma pedra que possa ser colocada. Se um jogador não tiver uma pedra que possa ser colocada, passa a vez. O jogo termina quando um jogador coloca todas as suas pedras na mesa (a dupla ganha) ou quando o jogo fica bloqueado, ou seja, nenhum jogador pode colocar mais pedras na mesa (empate).
+Dominó é jogado com duas duplas adversárias, totalizando 4 jogadores. Cada jogador recebe 7 pedras. O jogadore que tiver a peça `6-6` começa jogando ela. A partir daí, os jogadores devem jogar em sentido horário colocando suas pedras na mesa, de forma que uma das extremidades da pedra coincida com a extremidade aberta de uma das pedras que já se encontram na mesa. Um jogador só pode colocar uma pedra na mesa se ele tiver uma pedra que possa ser colocada. Se um jogador não tiver uma pedra que possa ser colocada, passa a vez. O jogo termina quando um jogador coloca todas as suas pedras na mesa (a dupla ganha) ou quando o jogo for fechado, ou seja, nenhum jogador pode colocar mais pedras na mesa.
+
+Se um jogo ficar fechado, ganha a equipe que tiver a menor soma de números na mão. Se as somas empatarem, perde quem jogou por último (aquele que fechou o jogo).
 
 ## Como programar o BOT
 
@@ -101,7 +103,7 @@ No argumento você pode passar a URL de um repositório Git ou um caminho de uma
 
 A competição começa hoje, 1/11.
 
-No final do mês, dia 30/11 a primeira fase da competição acontecerá. Nessa fase, todos os BOTs serão executados em um campeonato de todos contra todos. Cada BOT jogará 3 partidas contra cada um dos outros BOTs. A pontuação será calculada da seguinte forma: 3 pontos para cada vitória, 1 ponto para cada empate e 0 pontos para cada derrota. Os 4 BOTs com mais pontos passam para a fase final.
+No final do mês, dia 30/11 a primeira fase da competição acontecerá. Nessa fase, todos os BOTs serão executados em um campeonato de todos contra todos. Cada BOT jogará 3 partidas contra cada um dos outros BOTs. A cada vitória, acumula 1 ponto. Os 4 BOTs com mais pontos passam para a fase final.
 
 No dia 14/12, data do nosso planejamento, faremos a competição final entre esses 4: 1º contra 3º e 2º contra 4º. Os vencedores dessas partidas se enfrentam na final e os perdedores disputam o terceiro lugar. Esses jogos serão AO VIVO, NO TELÃO!
 
