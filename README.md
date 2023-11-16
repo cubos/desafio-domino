@@ -26,7 +26,7 @@ Se um jogo ficar fechado, ganha a equipe que tiver a menor soma de números na m
 
 ## Como programar o BOT
 
-Você deve implementar um BOT que será o celebro de um jogador. Como o jogo é jogado em  duplas, existem duas instâncias do seu BOT jogando ao mesmo tempo, mas elas não podem se comunicar entre si. Então se temos os jogadores 1, 2, 3 e 4, os jogadores 1 e 3 são a primeira dupla e ambos executam o mesmo código, os jogadores 2 e 4 são a outra dupla e executam o código adversário.
+Você deve implementar um BOT que será o cérebro de um jogador. Como o jogo é jogado em  duplas, existem duas instâncias do seu BOT jogando ao mesmo tempo, mas elas não podem se comunicar entre si. Então se temos os jogadores 1, 2, 3 e 4, os jogadores 1 e 3 são a primeira dupla e ambos executam o mesmo código, os jogadores 2 e 4 são a outra dupla e executam o código adversário.
 
 A interface do seu BOT é simples: você deve implementar um servidor HTTP que escute na porta 8000 e tenha um único endpoint `POST /` que recebe um JSON com o estado atual do jogo e retorna um JSON com a jogada que o BOT deseja fazer. O estado do jogo é um JSON com a seguinte estrutura:
 
