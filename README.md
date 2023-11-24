@@ -94,10 +94,10 @@ Você tem aqui uma implementação de exemplo do BOT em NodeJS, utilizando a est
 Aqui neste repositório tem o arquivo `run_domino.js`. Baixe esse arquivo (ou clone este repositório). Você pode então executar esse comando para rodar uma partida de dominó:
 
 ```bash
-node run_domino.js --bot1 https://github.com/cubos/desafio-domino-exemplo --bot2 ../meu-bot
+node run_domino.js --bot1 ../desafio-domino-exemplo --bot2 ../meu-bot
 ```
 
-No argumento você pode passar a URL de um repositório Git ou um caminho de uma pasta local. Este script vai contruir um container Docker para cada BOT e rodar uma partida de dominó entre eles, exibindo no terminal detalhes sobre o andamento da partida.
+Nos argumentos você deve passar o caminho de duas pastas de bots que tenham Dockerfile. Este script vai contruir um container Docker para cada BOT e rodar uma partida de dominó entre eles, exibindo no terminal detalhes sobre o andamento da partida.
 
 ## Regras do campeonato
 
