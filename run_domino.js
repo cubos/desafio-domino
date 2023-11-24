@@ -24,13 +24,20 @@ function run(command, args, options) {
 const options = {
   bot1Path: null,
   bot2Path: null,
-  quiet: false, // TODO
+  quiet: false,
   verbose: false,
-  games: 1, // TODO
+  games: 1,
 }
 
 function showHelp() {
-  console.log("Usage: node run_domino.js --bot1 <path> --bot2 <path>");
+  console.log("Uso: node run_domino.js --bot1 <path> --bot2 <path>");
+  console.log();
+  console.log("  --bot1 <path>  Caminho para a pasta do bot 1, com o Dockerfile.");
+  console.log("  --bot2 <path>  Caminho para a pasta do bot 2, com o Dockerfile.");
+  console.log("  --help         Mostra esta ajuda.");
+  console.log("  --verbose      Mostra mais detalhes sobre as requisições enviadas para cada bot.");
+  console.log("  --quiet        Não mostra detalhes sobre o andamento da partida.");
+  console.log("  --games <n>    Quantidade de partidas a serem jogadas. O padrão é 1.");
   process.exit(0);
 }
 
@@ -38,11 +45,11 @@ for (let i = 2; i < process.argv.length; ++i) {
   switch (process.argv[i]) {
     case "--bot1": {
       if (i + 1 >= process.argv.length) {
-        console.error("Missing argument for --bot1.");
+        console.error("Argumento faltando para --bot1.");
         process.exit(1);
       }
       if (options.bot1Path !== null) {
-        console.error("Duplicate --bot1.");
+        console.error("Argumento duplicado --bot1.");
         process.exit(1);
       }
       options.bot1Path = process.argv[++i];
@@ -50,11 +57,11 @@ for (let i = 2; i < process.argv.length; ++i) {
     }
     case "--bot2": {
       if (i + 1 >= process.argv.length) {
-        console.error("Missing argument for --bot2.");
+        console.error("Argumento faltando para --bot2.");
         process.exit(1);
       }
       if (options.bot2Path !== null) {
-        console.error("Duplicate --bot2.");
+        console.error("Argumento duplicado --bot2.");
         process.exit(1);
       }
       options.bot2Path = process.argv[++i];
@@ -68,8 +75,20 @@ for (let i = 2; i < process.argv.length; ++i) {
       options.verbose = true;
       break;
     }
+    case "--quiet": {
+      options.quiet = true;
+      break;
+    }
+    case "--games": {
+      if (i + 1 >= process.argv.length) {
+        console.error("Argumento faltando para --games.");
+        process.exit(1);
+      }
+      options.games = Math.max(1, parseInt(process.argv[++i], 10));
+      break;
+    }
     default: {
-      console.error(`Unknown argument: ${process.argv[i]}`);
+      console.error(`Argumento desconhecido: ${process.argv[i]}`);
       process.exit(1);
     }
   }
@@ -77,6 +96,11 @@ for (let i = 2; i < process.argv.length; ++i) {
 
 if (!options.bot1Path || !options.bot2Path) {
   showHelp();
+}
+
+if (options.verbose && options.quiet) {
+  console.error("Não é possível usar --verbose e --quiet ao mesmo tempo");
+  process.exit(1);
 }
 
 console.log("Construindo imagem Docker do bot 1...");
@@ -126,7 +150,7 @@ function shutdown() {
 process.on("exit", shutdown);
 process.on("uncaughtException", err => { shutdown(); console.error(err); process.exit(1); });
 
-console.log("Iniciando partida...")
+console.log(options.games === 1 ? "Iniciando partida..." : "Iniciando campeonato...")
 console.log()
 
 // Espera os containers estarem prontos e inicia a partida
@@ -156,10 +180,28 @@ async function postJson(hostname, port, body) {
 }
 
 async function main() {
-  const ganhador = await runGame();
+  if (options.games === 1) {
+    const ganhador = await runGame();
+    console.log(`Vencedor: bot${jogadores[ganhador].bot}.`);
+    console.log();
+    return;
+  }
 
-  console.log(`Vencedor: bot${jogadores[ganhador].bot}.`);
+  const resultados = [0, 0];
+  for (let i = 0; i < options.games; ++i) {
+    const ganhador = await runGame();
+    resultados[ganhador - 1] += 1;
+    console.log(`Partida ${i + 1}: Vencedor: bot${jogadores[ganhador].bot}.`);
+    console.log(`  Resultado parcial: bot1 ${resultados[0]} x ${resultados[1]} bot2`);
+    console.log();
+  }
+
+  console.log(`Resultado final após ${options.games} partidas: bot1 ${resultados[0]} x ${resultados[1]} bot2`);
+  console.log();
 }
+
+const infoLog = options.quiet ? () => {} : console.log;
+const verboseLog = options.verbose ? console.log : () => {};
 
 // Resolve para o time ganhador de um jogo, retorna 1 ou 2.
 async function runGame() {
@@ -183,9 +225,11 @@ async function runGame() {
   jogadores[3].mao = pedras.slice(14, 21);
   jogadores[4].mao = pedras.slice(21, 28);
 
-  console.log("Pedras distribuídas:");
-  for (let i = 1; i <= 4; ++i) {
-    console.log(`  Jogador ${i}: [${jogadores[i].mao.join("] [")}]`);
+  if (!options.quiet) {
+    infoLog("Pedras distribuídas:");
+    for (let i = 1; i <= 4; ++i) {
+      infoLog(`  Jogador ${i}: [${jogadores[i].mao.join("] [")}]`);
+    }
   }
 
   // Inicia o jogo
@@ -199,7 +243,7 @@ async function runGame() {
   jogadores[jogadorAtual].mao.splice(jogadores[jogadorAtual].mao.indexOf(primeiraPedra), 1);
   jogadas.push({ jogador: jogadorAtual, pedra: primeiraPedra });
 
-  console.log(`Jogador ${jogadorAtual} começa a partida e coloca a pedra [${primeiraPedra}] na mesa.\n`);
+  infoLog(`Jogador ${jogadorAtual} começa a partida e coloca a pedra [${primeiraPedra}] na mesa.\n`);
 
   jogadorAtual += 1;
   if (jogadorAtual > 4) jogadorAtual = 1;
@@ -214,25 +258,21 @@ async function runGame() {
       jogadas
     };
 
-    console.log(`  Mesa: [${mesa.join("][")}]\n`);
+    infoLog(`  Mesa: [${mesa.join("][")}]\n`);
     for (let i = 1; i <= 4; ++i) {
-      console.log(`  Jogador ${i}${ jogadorAtual === i ? " (*):" : ":    "} [${jogadores[i].mao.join("] [")}]`);
+      infoLog(`  Jogador ${i}${ jogadorAtual === i ? " (*):" : ":    "} [${jogadores[i].mao.join("] [")}]`);
     }
 
-    if (options.verbose) {
-      console.log(`\nEnviando para jogador ${jogadorAtual} via POST http://localhost:${jogadores[jogadorAtual].port}/:`);
-      console.log(`${inspect(json, undefined, 10, true)}\n`);
-    }
+    verboseLog(`\nEnviando para jogador ${jogadorAtual} via POST http://localhost:${jogadores[jogadorAtual].port}/:`);
+    verboseLog(`${inspect(json, undefined, 10, true)}\n`);
 
     const timeoutGuard = new Object();
     const errorGuard = new Object();
 
     const jogada = await Promise.race([
       postJson("localhost", jogadores[jogadorAtual].port, json).then(res => {
-        if (options.verbose) {
-          console.log(`Jogada recebida:`);
-          console.log(`${inspect(res, undefined, 10, true)}\n`);
-        }
+        verboseLog(`Jogada recebida:`);
+        verboseLog(`${inspect(res, undefined, 10, true)}\n`);
         return res;
       }),
       new Promise(resolve => setTimeout(() => resolve(timeoutGuard), 3000))
@@ -242,42 +282,42 @@ async function runGame() {
     });
 
     if (jogada === timeoutGuard) {
-      console.log(`Jogador ${jogadorAtual} excedeu o tempo limite e foi desclassificado.\n`);
+      infoLog(`Jogador ${jogadorAtual} excedeu o tempo limite e foi desclassificado.\n`);
       return jogadorAtual === 1 || jogadorAtual === 3 ? 2 : 1;
     }
 
     if (jogada === errorGuard) {
-      console.log(`Jogador ${jogadorAtual} falhou com um erro e foi desclassificado.\n`);
+      infoLog(`Jogador ${jogadorAtual} falhou com um erro e foi desclassificado.\n`);
       return jogadorAtual === 1 || jogadorAtual === 3 ? 2 : 1;
     }
 
     if (Object.keys(jogada).length === 0) {
-      console.log(`Jogador ${jogadorAtual} passou a vez.\n`)
+      infoLog(`Jogador ${jogadorAtual} passou a vez.\n`)
       skipCount += 1;
 
       const possibilidades = jogadores[jogadorAtual].mao.filter(pedra => pedra.split("-").includes(mesa[0][0]) || pedra.split("-").includes(mesa[mesa.length - 1][2]));
       if (possibilidades.length !== 0) {
-        console.log(`Jogador ${jogadorAtual} poderia ter jogado a pedra [${possibilidades[0]}], mas passou a vez. Por conta disso foi desclassificado.\n`);
+        infoLog(`Jogador ${jogadorAtual} poderia ter jogado a pedra [${possibilidades[0]}], mas passou a vez. Por conta disso foi desclassificado.\n`);
         return jogadorAtual === 1 || jogadorAtual === 3 ? 2 : 1;
       }
     } else {
       if (!["esquerda", "direita"].includes(jogada.lado)) {
-        console.log(`Jogador ${jogadorAtual} jogou uma pedra com um lado inválido e foi desclassificado.\n`);
+        infoLog(`Jogador ${jogadorAtual} jogou uma pedra com um lado inválido e foi desclassificado.\n`);
         return jogadorAtual === 1 || jogadorAtual === 3 ? 2 : 1;
       }
 
-      console.log(`Jogador ${jogadorAtual} jogou a pedra [${jogada.pedra}] no lado ${jogada.lado} da mesa.\n`);
+      infoLog(`Jogador ${jogadorAtual} jogou a pedra [${jogada.pedra}] no lado ${jogada.lado} da mesa.\n`);
       skipCount = 0;
 
       const index = jogadores[jogadorAtual].mao.findIndex(p => p === jogada.pedra || p === jogada.pedra.split("-").reverse().join("-"));
 
       if (index === -1) {
-        console.log(`Jogador ${jogadorAtual} jogou uma pedra que não tinha na mão e foi desclassificado.\n`);
+        infoLog(`Jogador ${jogadorAtual} jogou uma pedra que não tinha na mão e foi desclassificado.\n`);
         return jogadorAtual === 1 || jogadorAtual === 3 ? 2 : 1;
       }
 
       if ((jogada.lado === "direita" && !jogada.pedra.includes(mesa[mesa.length - 1][2])) || (jogada.lado === "esquerda" && !jogada.pedra.includes(mesa[0][0]))) {
-        console.log(`Jogador ${jogadorAtual} jogou uma pedra que não encaixa na mesa e foi desclassificado.\n`);
+        infoLog(`Jogador ${jogadorAtual} jogou uma pedra que não encaixa na mesa e foi desclassificado.\n`);
         return jogadorAtual === 1 || jogadorAtual === 3 ? 2 : 1;
       }
 
@@ -296,7 +336,7 @@ async function runGame() {
       jogadas.push({ jogador: jogadorAtual, pedra: jogada.pedra, lado: jogada.lado });
 
       if (jogadores[jogadorAtual].mao.length === 0) {
-        console.log(`Jogador ${jogadorAtual} ganhou a partida!\n`);
+        infoLog(`Jogador ${jogadorAtual} ganhou a partida!\n`);
         return jogadorAtual === 1 || jogadorAtual === 3 ? 1 : 2;
       }
     }
@@ -305,29 +345,29 @@ async function runGame() {
     if (jogadorAtual > 4) jogadorAtual = 1;
   }
 
-  console.log(`Todos os jogadores passaram a vez e a partida terminou empatada.\n\n`);
+  infoLog(`Todos os jogadores passaram a vez e a partida terminou empatada.\n\n`);
 
   function contaPontos(mao) {
     return mao.reduce((acc, curr) => acc + curr.split("-").reduce((acc, curr) => acc + parseInt(curr), 0), 0);
   }
 
   for (let i = 1; i <= 4; ++i) {
-    console.log(`  Jogador ${i}: ${contaPontos(jogadores[i].mao)} pontos.`);
+    infoLog(`  Jogador ${i}: ${contaPontos(jogadores[i].mao)} pontos.`);
   }
 
   const equipe1 = contaPontos(jogadores[1].mao) + contaPontos(jogadores[3].mao);
   const equipe2 = contaPontos(jogadores[2].mao) + contaPontos(jogadores[4].mao);
 
   if (equipe1 < equipe2) {
-    console.log(`Jogadores 1 e 3 ganharam com ${equipe1} pontos contra ${equipe2} pontos dos jogadores 2 e 4.`);
+    infoLog(`Jogadores 1 e 3 ganharam com ${equipe1} pontos contra ${equipe2} pontos dos jogadores 2 e 4.`);
     return 1;
   } else if (equipe1 > equipe2) {
-    console.log(`Jogadores 2 e 4 ganharam com ${equipe2} pontos contra ${equipe1} pontos dos jogadores 1 e 3.`);
+    infoLog(`Jogadores 2 e 4 ganharam com ${equipe2} pontos contra ${equipe1} pontos dos jogadores 1 e 3.`);
     return 2;
   } else {
     const ultimo = jogadas.at(-1).jogador;
 
-    console.log(`As duas equipes tem a mesma quantidade de pontos. Jogador ${ultimo} foi o último a jogar perde a partida.`);
+    infoLog(`As duas equipes tem a mesma quantidade de pontos. Jogador ${ultimo} foi o último a jogar perde a partida.`);
 
     if (ultimo === 1 || ultimo === 3) {
       return 2;
