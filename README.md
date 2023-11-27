@@ -103,7 +103,7 @@ Nos argumentos você deve passar o caminho de duas pastas de bots que tenham Doc
 
 A competição começa hoje, 1/11.
 
-No dia 4/12, às 18h30, faremos um primeiro compeonato amistoso. Não vale nada, mas vai ser divertido comparar os BOTs em construção. Link para participar: meet.google.com/jty-tyxu-vgo
+No dia 4/12, às 18h30, faremos um primeiro compeonato amistoso. Não vale nada, mas vai ser divertido comparar os BOTs em construção. Link para participar: https://meet.google.com/jty-tyxu-vgo
 
 No dia 8/12 a primeira fase da competição acontecerá. Nessa fase, todos os BOTs serão executados em um campeonato de todos contra todos. Cada BOT jogará 10 partidas contra cada um dos outros BOTs. A cada vitória, acumula 1 ponto. Os 4 BOTs com mais pontos passam para a fase final.
 
