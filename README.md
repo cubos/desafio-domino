@@ -103,10 +103,12 @@ Nos argumentos você deve passar o caminho de duas pastas de bots que tenham Doc
 
 A competição começa hoje, 1/11.
 
-No final do mês, dia 30/11 a primeira fase da competição acontecerá. Nessa fase, todos os BOTs serão executados em um campeonato de todos contra todos. Cada BOT jogará 3 partidas contra cada um dos outros BOTs. A cada vitória, acumula 1 ponto. Os 4 BOTs com mais pontos passam para a fase final.
+No dia 4/12, às 18h30, faremos um primeiro compeonato amistoso. Não vale nada, mas vai ser divertido comparar os BOTs em construção. Link para participar: meet.google.com/jty-tyxu-vgo
+
+No dia 8/12 a primeira fase da competição acontecerá. Nessa fase, todos os BOTs serão executados em um campeonato de todos contra todos. Cada BOT jogará 10 partidas contra cada um dos outros BOTs. A cada vitória, acumula 1 ponto. Os 4 BOTs com mais pontos passam para a fase final.
 
 No dia 14/12, data do nosso planejamento, faremos a competição final entre esses 4: 1º contra 3º e 2º contra 4º. Os vencedores dessas partidas se enfrentam na final e os perdedores disputam o terceiro lugar. Esses jogos serão AO VIVO, NO TELÃO!
 
-Teremos também o concuso de criatividade: aqui é simples: o BOT mais legal, inovador, inusitado ganha. Todos da Cubos votam, os mais votados ganham prêmios.
+Teremos também o concurso de criatividade: aqui é simples: o BOT mais legal, inovador, inusitado ganha. Todos da Cubos votam, os mais votados ganham prêmios.
 
 Você pode participar sozinho ou em equipes de até 3 pessoas. Faça um pull request modificando o arquivo PARTICIPANTS.md para se inscrever.
