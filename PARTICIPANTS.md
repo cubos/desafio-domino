@@ -7,4 +7,5 @@
 | [Joshua](https://github.com/joshuapassos) | https://github.com/joshuapassos/domino-hs |
 | [Guilherme Bernal](https://github.com/lbguilherme) | https://github.com/lbguilherme/desafio-domino |
 | [José Cleiton](https://github.com/josecleiton) | https://github.com/josecleiton/desafio-domino |
+| [Diego Malta](https://github.com/josecleiton) | Em Progresso... |
 | ... | ... |
