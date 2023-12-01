@@ -10,3 +10,4 @@
 | [Diego Malta](https://github.com/josecleiton) | Em Progresso... |
 | [Renato Macêdo](https://github.com/renato-macedo) | https://github.com/renato-macedo/desafio-domino
 | [Mr Menezes](https://github.com/MrMenezesDev) | https://github.com/MrMenezesDev/desafio_domino |
+| [Larissa Dantas](https://github.com/RikoKami) | Em progressso... |
