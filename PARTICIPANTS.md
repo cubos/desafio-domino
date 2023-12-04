@@ -12,4 +12,5 @@
 | [Mr Menezes](https://github.com/MrMenezesDev) | https://github.com/MrMenezesDev/desafio_domino |
 | [Larissa Dantas](https://github.com/RikoKami) | Em progressso... |
 | [Pablo Henrique](https://github.com/pablohen) | https://github.com/pablohen/desafio-domino-pablo |
+| [Gutchenzo](https://github.com/Guilera) | https://github.com/Guilera/domino-bot
 
