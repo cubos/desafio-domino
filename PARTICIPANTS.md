@@ -2,7 +2,7 @@
 
 | Participante(s)  | Link do repositório |
 | ---------------- | ------------------- |
-| [Arthur Passos](https://github.com/Tutuviz) | Em Progresso... |
+| [Arthur Passos](https://github.com/Tutuviz) | https://github.com/Tutuviz/domino-bot |
 | [Salomemes](https://github.com/1Basco) | https://github.com/1Basco/dominous-bot |
 | [Joshua](https://github.com/joshuapassos) | https://github.com/joshuapassos/domino-hs |
 | [Guilherme Bernal](https://github.com/lbguilherme) | https://github.com/lbguilherme/desafio-domino |
