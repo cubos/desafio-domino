@@ -27,6 +27,7 @@ const options = {
   quiet: false,
   verbose: false,
   games: 1,
+  colors: true,
 }
 
 function showHelp() {
@@ -38,6 +39,7 @@ function showHelp() {
   console.log("  --verbose      Mostra mais detalhes sobre as requisições enviadas para cada bot.");
   console.log("  --quiet        Não mostra detalhes sobre o andamento da partida.");
   console.log("  --games <n>    Quantidade de partidas a serem jogadas. O padrão é 1.");
+  console.log("  --no-colors    Desabilita cores no terminal.");
   process.exit(0);
 }
 
@@ -79,6 +81,10 @@ for (let i = 2; i < process.argv.length; ++i) {
       options.quiet = true;
       break;
     }
+    case "--no-colors": {
+      options.colors = false;
+      break;
+    }
     case "--games": {
       if (i + 1 >= process.argv.length) {
         console.error("Argumento faltando para --games.");
@@ -104,11 +110,11 @@ if (options.verbose && options.quiet) {
 }
 
 console.log("Construindo imagem Docker do bot 1...");
-run("docker", ["build", options.bot1Path, "-t", "cubos-domino-bot1"], { stdio: [0, 1, 2] });
+run("docker", ["build", options.bot1Path, "-t", "cubos-domino-bot1", "--quiet"], { stdio: [0, 1, 2] });
 console.log();
 
 console.log("Construindo imagem Docker do bot 2...");
-run("docker", ["build", options.bot2Path, "-t", "cubos-domino-bot2"], { stdio: [0, 1, 2] });
+run("docker", ["build", options.bot2Path, "-t", "cubos-domino-bot2", "--quiet"], { stdio: [0, 1, 2] });
 console.log();
 
 const jogadores = [
@@ -157,7 +163,7 @@ console.log()
 setTimeout(main, 2000)
 
 // Utilitário para fazer requisições POST com JSON
-async function postJson(hostname, port, body) {
+async function postJson(hostname, port, body, retries = 3) {
   return new Promise((resolve, reject) => {
     const req = http.request({
       hostname,
@@ -176,6 +182,12 @@ async function postJson(hostname, port, body) {
     req.on("error", reject);
     req.write(JSON.stringify(body));
     req.end();
+  }).catch(async err => {
+    if (retries > 0) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      return postJson(hostname, port, body, retries - 1);
+    }
+    throw err;
   });
 }
 
@@ -264,7 +276,7 @@ async function runGame() {
     }
 
     verboseLog(`\nEnviando para jogador ${jogadorAtual} via POST http://localhost:${jogadores[jogadorAtual].port}/:`);
-    verboseLog(`${inspect(json, undefined, 10, true)}\n`);
+    verboseLog(`${inspect(json, undefined, 10, options.colors)}\n`);
 
     const timeoutGuard = new Object();
     const errorGuard = new Object();
@@ -272,7 +284,7 @@ async function runGame() {
     const jogada = await Promise.race([
       postJson("localhost", jogadores[jogadorAtual].port, json).then(res => {
         verboseLog(`Jogada recebida:`);
-        verboseLog(`${inspect(res, undefined, 10, true)}\n`);
+        verboseLog(`${inspect(res, undefined, 10, options.colors)}\n`);
         return res;
       }),
       new Promise(resolve => setTimeout(() => resolve(timeoutGuard), 3000))
