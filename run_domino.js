@@ -202,7 +202,7 @@ async function main() {
   const resultados = [0, 0];
   for (let i = 0; i < options.games; ++i) {
     const ganhador = await runGame();
-    resultados[ganhador - 1] += 1;
+    resultados[jogadores[ganhador].bot - 1] += 1;
     console.log(`Partida ${i + 1}: Vencedor: bot${jogadores[ganhador].bot}.`);
     console.log(`  Resultado parcial: bot1 ${resultados[0]} x ${resultados[1]} bot2`);
     console.log();
