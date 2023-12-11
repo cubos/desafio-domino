@@ -28,18 +28,23 @@ const options = {
   verbose: false,
   games: 1,
   colors: true,
+  portBase: 5550,
+  build: true,
 }
 
 function showHelp() {
   console.log("Uso: node run_domino.js --bot1 <path> --bot2 <path>");
   console.log();
-  console.log("  --bot1 <path>  Caminho para a pasta do bot 1, com o Dockerfile.");
-  console.log("  --bot2 <path>  Caminho para a pasta do bot 2, com o Dockerfile.");
-  console.log("  --help         Mostra esta ajuda.");
-  console.log("  --verbose      Mostra mais detalhes sobre as requisições enviadas para cada bot.");
-  console.log("  --quiet        Não mostra detalhes sobre o andamento da partida.");
-  console.log("  --games <n>    Quantidade de partidas a serem jogadas. O padrão é 1.");
-  console.log("  --no-colors    Desabilita cores no terminal.");
+  console.log("  --bot1 <path>    Caminho para a pasta do bot 1, com o Dockerfile.");
+  console.log("  --bot2 <path>    Caminho para a pasta do bot 2, com o Dockerfile.");
+  console.log("  --help           Mostra esta ajuda.");
+  console.log("  --verbose        Mostra mais detalhes sobre as requisições enviadas para cada bot.");
+  console.log("  --quiet          Não mostra detalhes sobre o andamento da partida.");
+  console.log("  --games <n>      Quantidade de partidas a serem jogadas. O padrão é 1.");
+  console.log("  --no-colors      Desabilita cores no terminal.");
+  console.log("  --port-base <n>  Porta base para os containers dos bots. O padrão é 5550.");
+  console.log("  --no-build       Não constrói as imagens Docker dos bots. Use esta opção se você já");
+  console.log("                   construiu as imagens anteriormente.");
   process.exit(0);
 }
 
@@ -85,12 +90,24 @@ for (let i = 2; i < process.argv.length; ++i) {
       options.colors = false;
       break;
     }
+    case "--no-build": {
+      options.build = false;
+      break;
+    }
     case "--games": {
       if (i + 1 >= process.argv.length) {
         console.error("Argumento faltando para --games.");
         process.exit(1);
       }
       options.games = Math.max(1, parseInt(process.argv[++i], 10));
+      break;
+    }
+    case "--port-base": {
+      if (i + 1 >= process.argv.length) {
+        console.error("Argumento faltando para --port-base.");
+        process.exit(1);
+      }
+      options.portBase = Math.max(1, parseInt(process.argv[++i], 10));
       break;
     }
     default: {
@@ -109,19 +126,24 @@ if (options.verbose && options.quiet) {
   process.exit(1);
 }
 
-console.log("Construindo imagem Docker do bot 1...");
-run("docker", ["build", options.bot1Path, "-t", "cubos-domino-bot1", "--quiet"], { stdio: [0, 1, 2] });
-console.log();
+const image1 = "cubos-domino-bot-" + options.bot1Path.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+const image2 = "cubos-domino-bot-" + options.bot2Path.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
 
-console.log("Construindo imagem Docker do bot 2...");
-run("docker", ["build", options.bot2Path, "-t", "cubos-domino-bot2", "--quiet"], { stdio: [0, 1, 2] });
-console.log();
+if (options.build) {
+  console.log("Construindo imagem Docker do bot 1...");
+  run("docker", ["build", options.bot1Path, "-t", image1, "--quiet"], { stdio: [0, 1, 2] });
+  console.log();
+
+  console.log("Construindo imagem Docker do bot 2...");
+  run("docker", ["build", options.bot2Path, "-t", image2, "--quiet"], { stdio: [0, 1, 2] });
+  console.log();
+}
 
 const jogadores = [
-  { bot: 1, image: "cubos-domino-bot1", path: options.bot1Path },
-  { bot: 2, image: "cubos-domino-bot2", path: options.bot2Path },
-  { bot: 1, image: "cubos-domino-bot1", path: options.bot1Path },
-  { bot: 2, image: "cubos-domino-bot2", path: options.bot2Path }
+  { bot: 1, image: image1, path: options.bot1Path },
+  { bot: 2, image: image2, path: options.bot2Path },
+  { bot: 1, image: image1, path: options.bot1Path },
+  { bot: 2, image: image2, path: options.bot2Path }
 ];
 
 if (Math.random() < 0.5) {
@@ -130,10 +152,10 @@ if (Math.random() < 0.5) {
 
 jogadores.unshift(undefined);
 
-jogadores[1].port = 5551;
-jogadores[2].port = 5552;
-jogadores[3].port = 5553;
-jogadores[4].port = 5554;
+jogadores[1].port = options.portBase + 1;
+jogadores[2].port = options.portBase + 2;
+jogadores[3].port = options.portBase + 3;
+jogadores[4].port = options.portBase + 4;
 
 for (let i = 1; i <= 4; ++i) {
   console.log(`Iniciando container do jogador ${i}... ${jogadores[i].path}`);
@@ -160,7 +182,7 @@ console.log(options.games === 1 ? "Iniciando partida..." : "Iniciando campeonato
 console.log()
 
 // Espera os containers estarem prontos e inicia a partida
-setTimeout(main, 2000)
+setTimeout(main, 4000)
 
 // Utilitário para fazer requisições POST com JSON
 async function postJson(hostname, port, body, retries = 3) {
