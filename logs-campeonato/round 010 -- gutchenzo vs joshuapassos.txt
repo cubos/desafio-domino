@@ -1,0 +1,1234 @@
+Iniciando container do jogador 1... bots/gutchenzo
+Iniciando container do jogador 2... bots/joshuapassos
+Iniciando container do jogador 3... bots/gutchenzo
+Iniciando container do jogador 4... bots/joshuapassos
+Iniciando partida...
+
+Pedras distribuídas:
+  Jogador 1: [4-4] [1-2] [1-4] [4-6] [2-2] [2-6] [3-3]
+  Jogador 2: [2-4] [6-6] [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3: [0-2] [0-5] [1-6] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4: [0-3] [2-3] [0-0] [3-4] [3-5] [4-5] [0-1]
+Jogador 2 começa a partida e coloca a pedra [6-6] na mesa.
+
+  Mesa: [6-6]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [4-6] [2-2] [2-6] [3-3]
+  Jogador 2:     [2-4] [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3 (*): [0-2] [0-5] [1-6] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [2-3] [0-0] [3-4] [3-5] [4-5] [0-1]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [
+    '0-2', '0-5',
+    '1-6', '1-5',
+    '1-3', '5-5',
+    '0-6'
+  ],
+  mesa: [ '6-6' ],
+  jogadas: [ { jogador: 2, pedra: '6-6' } ]
+}
+
+Jogada recebida:
+{ pedra: '6-1', lado: 'esquerda' }
+
+Jogador 3 jogou a pedra [6-1] no lado esquerda da mesa.
+
+  Mesa: [1-6][6-6]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [4-6] [2-2] [2-6] [3-3]
+  Jogador 2:     [2-4] [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3:     [0-2] [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4 (*): [0-3] [2-3] [0-0] [3-4] [3-5] [4-5] [0-1]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [
+    '0-3', '2-3',
+    '0-0', '3-4',
+    '3-5', '4-5',
+    '0-1'
+  ],
+  mesa: [ '1-6', '6-6' ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '0-1' }
+
+Jogador 4 jogou a pedra [0-1] no lado esquerda da mesa.
+
+  Mesa: [0-1][1-6][6-6]
+
+  Jogador 1 (*): [4-4] [1-2] [1-4] [4-6] [2-2] [2-6] [3-3]
+  Jogador 2:     [2-4] [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3:     [0-2] [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [2-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [
+    '4-4', '1-2',
+    '1-4', '4-6',
+    '2-2', '2-6',
+    '3-3'
+  ],
+  mesa: [ '0-1', '1-6', '6-6' ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '6-4', lado: 'direita' }
+
+Jogador 1 jogou a pedra [6-4] no lado direita da mesa.
+
+  Mesa: [0-1][1-6][6-6][6-4]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [2-2] [2-6] [3-3]
+  Jogador 2 (*): [2-4] [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3:     [0-2] [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [2-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '2-4', '0-4', '1-1', '2-5', '5-6', '3-6' ],
+  mesa: [ '0-1', '1-6', '6-6', '6-4' ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'direita', pedra: '2-4' }
+
+Jogador 2 jogou a pedra [2-4] no lado direita da mesa.
+
+  Mesa: [0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [2-2] [2-6] [3-3]
+  Jogador 2:     [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3 (*): [0-2] [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [2-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '0-2', '0-5', '1-5', '1-3', '5-5', '0-6' ],
+  mesa: [ '0-1', '1-6', '6-6', '6-4', '4-2' ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '2-0', lado: 'esquerda' }
+
+Jogador 3 jogou a pedra [2-0] no lado esquerda da mesa.
+
+  Mesa: [2-0][0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [2-2] [2-6] [3-3]
+  Jogador 2:     [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3:     [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4 (*): [0-3] [2-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-3', '2-3', '0-0', '3-4', '3-5', '4-5' ],
+  mesa: [ '2-0', '0-1', '1-6', '6-6', '6-4', '4-2' ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '2-3' }
+
+Jogador 4 jogou a pedra [2-3] no lado esquerda da mesa.
+
+  Mesa: [3-2][2-0][0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1 (*): [4-4] [1-2] [1-4] [2-2] [2-6] [3-3]
+  Jogador 2:     [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3:     [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [ '4-4', '1-2', '1-4', '2-2', '2-6', '3-3' ],
+  mesa: [
+    '3-2', '2-0',
+    '0-1', '1-6',
+    '6-6', '6-4',
+    '4-2'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '3-3', lado: 'esquerda' }
+
+Jogador 1 jogou a pedra [3-3] no lado esquerda da mesa.
+
+  Mesa: [3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [2-2] [2-6]
+  Jogador 2 (*): [0-4] [1-1] [2-5] [5-6] [3-6]
+  Jogador 3:     [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '0-4', '1-1', '2-5', '5-6', '3-6' ],
+  mesa: [
+    '3-3', '3-2',
+    '2-0', '0-1',
+    '1-6', '6-6',
+    '6-4', '4-2'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '3-6' }
+
+Jogador 2 jogou a pedra [3-6] no lado esquerda da mesa.
+
+  Mesa: [6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [2-2] [2-6]
+  Jogador 2:     [0-4] [1-1] [2-5] [5-6]
+  Jogador 3 (*): [0-5] [1-5] [1-3] [5-5] [0-6]
+  Jogador 4:     [0-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '0-5', '1-5', '1-3', '5-5', '0-6' ],
+  mesa: [
+    '6-3', '3-3',
+    '3-2', '2-0',
+    '0-1', '1-6',
+    '6-6', '6-4',
+    '4-2'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '6-0', lado: 'esquerda' }
+
+Jogador 3 jogou a pedra [6-0] no lado esquerda da mesa.
+
+  Mesa: [0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1:     [4-4] [1-2] [1-4] [2-2] [2-6]
+  Jogador 2:     [0-4] [1-1] [2-5] [5-6]
+  Jogador 3:     [0-5] [1-5] [1-3] [5-5]
+  Jogador 4 (*): [0-3] [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-3', '0-0', '3-4', '3-5', '4-5' ],
+  mesa: [
+    '0-6', '6-3', '3-3',
+    '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4',
+    '4-2'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '0-3' }
+
+Jogador 4 jogou a pedra [0-3] no lado esquerda da mesa.
+
+  Mesa: [3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2]
+
+  Jogador 1 (*): [4-4] [1-2] [1-4] [2-2] [2-6]
+  Jogador 2:     [0-4] [1-1] [2-5] [5-6]
+  Jogador 3:     [0-5] [1-5] [1-3] [5-5]
+  Jogador 4:     [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [ '4-4', '1-2', '1-4', '2-2', '2-6' ],
+  mesa: [
+    '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6',
+    '6-4', '4-2'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '2-1', lado: 'direita' }
+
+Jogador 1 jogou a pedra [2-1] no lado direita da mesa.
+
+  Mesa: [3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1]
+
+  Jogador 1:     [4-4] [1-4] [2-2] [2-6]
+  Jogador 2 (*): [0-4] [1-1] [2-5] [5-6]
+  Jogador 3:     [0-5] [1-5] [1-3] [5-5]
+  Jogador 4:     [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '0-4', '1-1', '2-5', '5-6' ],
+  mesa: [
+    '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6',
+    '6-4', '4-2', '2-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'direita', pedra: '1-1' }
+
+Jogador 2 jogou a pedra [1-1] no lado direita da mesa.
+
+  Mesa: [3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [1-4] [2-2] [2-6]
+  Jogador 2:     [0-4] [2-5] [5-6]
+  Jogador 3 (*): [0-5] [1-5] [1-3] [5-5]
+  Jogador 4:     [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '0-5', '1-5', '1-3', '5-5' ],
+  mesa: [
+    '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6',
+    '6-4', '4-2', '2-1',
+    '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '3-1', lado: 'esquerda' }
+
+Jogador 3 jogou a pedra [3-1] no lado esquerda da mesa.
+
+  Mesa: [1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [1-4] [2-2] [2-6]
+  Jogador 2:     [0-4] [2-5] [5-6]
+  Jogador 3:     [0-5] [1-5] [5-5]
+  Jogador 4 (*): [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-0', '3-4', '3-5', '4-5' ],
+  mesa: [
+    '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2',
+    '2-0', '0-1', '1-6',
+    '6-6', '6-4', '4-2',
+    '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 4 passou a vez.
+
+  Mesa: [1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1 (*): [4-4] [1-4] [2-2] [2-6]
+  Jogador 2:     [0-4] [2-5] [5-6]
+  Jogador 3:     [0-5] [1-5] [5-5]
+  Jogador 4:     [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [ '4-4', '1-4', '2-2', '2-6' ],
+  mesa: [
+    '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2',
+    '2-0', '0-1', '1-6',
+    '6-6', '6-4', '4-2',
+    '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '4-1', lado: 'esquerda' }
+
+Jogador 1 jogou a pedra [4-1] no lado esquerda da mesa.
+
+  Mesa: [4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [2-2] [2-6]
+  Jogador 2 (*): [0-4] [2-5] [5-6]
+  Jogador 3:     [0-5] [1-5] [5-5]
+  Jogador 4:     [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '0-4', '2-5', '5-6' ],
+  mesa: [
+    '4-1', '1-3', '3-0',
+    '0-6', '6-3', '3-3',
+    '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '0-4' }
+
+Jogador 2 jogou a pedra [0-4] no lado esquerda da mesa.
+
+  Mesa: [0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3 (*): [0-5] [1-5] [5-5]
+  Jogador 4:     [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '0-5', '1-5', '5-5' ],
+  mesa: [
+    '0-4', '4-1', '1-3',
+    '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6',
+    '6-4', '4-2', '2-1',
+    '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '5-0', lado: 'esquerda' }
+
+Jogador 3 jogou a pedra [5-0] no lado esquerda da mesa.
+
+  Mesa: [5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [1-5] [5-5]
+  Jogador 4 (*): [0-0] [3-4] [3-5] [4-5]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-0', '3-4', '3-5', '4-5' ],
+  mesa: [
+    '5-0', '0-4', '4-1',
+    '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2',
+    '2-0', '0-1', '1-6',
+    '6-6', '6-4', '4-2',
+    '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '3-5' }
+
+Jogador 4 jogou a pedra [3-5] no lado esquerda da mesa.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1 (*): [4-4] [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [1-5] [5-5]
+  Jogador 4:     [0-0] [3-4] [4-5]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [ '4-4', '2-2', '2-6' ],
+  mesa: [
+    '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0',
+    '0-6', '6-3', '3-3',
+    '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 1 passou a vez.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [2-2] [2-6]
+  Jogador 2 (*): [2-5] [5-6]
+  Jogador 3:     [1-5] [5-5]
+  Jogador 4:     [0-0] [3-4] [4-5]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '2-5', '5-6' ],
+  mesa: [
+    '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0',
+    '0-6', '6-3', '3-3',
+    '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 2 passou a vez.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1]
+
+  Jogador 1:     [4-4] [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3 (*): [1-5] [5-5]
+  Jogador 4:     [0-0] [3-4] [4-5]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '1-5', '5-5' ],
+  mesa: [
+    '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0',
+    '0-6', '6-3', '3-3',
+    '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '5-1', lado: 'direita' }
+
+Jogador 3 jogou a pedra [5-1] no lado direita da mesa.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5]
+
+  Jogador 1:     [4-4] [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4 (*): [0-0] [3-4] [4-5]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-0', '3-4', '4-5' ],
+  mesa: [
+    '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0',
+    '0-6', '6-3', '3-3',
+    '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1',
+    '1-5'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'direita', pedra: '4-5' }
+
+Jogador 4 jogou a pedra [4-5] no lado direita da mesa.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4]
+
+  Jogador 1 (*): [4-4] [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4:     [0-0] [3-4]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [ '4-4', '2-2', '2-6' ],
+  mesa: [
+    '3-5', '5-0', '0-4', '4-1',
+    '1-3', '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4', '4-2',
+    '2-1', '1-1', '1-5', '5-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ pedra: '4-4', lado: 'direita' }
+
+Jogador 1 jogou a pedra [4-4] no lado direita da mesa.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1:     [2-2] [2-6]
+  Jogador 2 (*): [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4:     [0-0] [3-4]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '2-5', '5-6' ],
+  mesa: [
+    '3-5', '5-0', '0-4', '4-1',
+    '1-3', '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4', '4-2',
+    '2-1', '1-1', '1-5', '5-4',
+    '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 2 passou a vez.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1:     [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3 (*): [5-5]
+  Jogador 4:     [0-0] [3-4]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '5-5' ],
+  mesa: [
+    '3-5', '5-0', '0-4', '4-1',
+    '1-3', '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4', '4-2',
+    '2-1', '1-1', '1-5', '5-4',
+    '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 3 passou a vez.
+
+  Mesa: [3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1:     [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4 (*): [0-0] [3-4]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-0', '3-4' ],
+  mesa: [
+    '3-5', '5-0', '0-4', '4-1',
+    '1-3', '3-0', '0-6', '6-3',
+    '3-3', '3-2', '2-0', '0-1',
+    '1-6', '6-6', '6-4', '4-2',
+    '2-1', '1-1', '1-5', '5-4',
+    '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' }
+  ]
+}
+
+Jogada recebida:
+{ lado: 'esquerda', pedra: '3-4' }
+
+Jogador 4 jogou a pedra [3-4] no lado esquerda da mesa.
+
+  Mesa: [4-3][3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1 (*): [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4:     [0-0]
+
+Enviando para jogador 1 via POST http://localhost:5531/:
+{
+  jogador: 1,
+  mao: [ '2-2', '2-6' ],
+  mesa: [
+    '4-3', '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1', '1-5',
+    '5-4', '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' },
+    { jogador: 4, pedra: '4-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 1 passou a vez.
+
+  Mesa: [4-3][3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1:     [2-2] [2-6]
+  Jogador 2 (*): [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4:     [0-0]
+
+Enviando para jogador 2 via POST http://localhost:5532/:
+{
+  jogador: 2,
+  mao: [ '2-5', '5-6' ],
+  mesa: [
+    '4-3', '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1', '1-5',
+    '5-4', '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' },
+    { jogador: 4, pedra: '4-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 2 passou a vez.
+
+  Mesa: [4-3][3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1:     [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3 (*): [5-5]
+  Jogador 4:     [0-0]
+
+Enviando para jogador 3 via POST http://localhost:5533/:
+{
+  jogador: 3,
+  mao: [ '5-5' ],
+  mesa: [
+    '4-3', '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1', '1-5',
+    '5-4', '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' },
+    { jogador: 4, pedra: '4-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 3 passou a vez.
+
+  Mesa: [4-3][3-5][5-0][0-4][4-1][1-3][3-0][0-6][6-3][3-3][3-2][2-0][0-1][1-6][6-6][6-4][4-2][2-1][1-1][1-5][5-4][4-4]
+
+  Jogador 1:     [2-2] [2-6]
+  Jogador 2:     [2-5] [5-6]
+  Jogador 3:     [5-5]
+  Jogador 4 (*): [0-0]
+
+Enviando para jogador 4 via POST http://localhost:5534/:
+{
+  jogador: 4,
+  mao: [ '0-0' ],
+  mesa: [
+    '4-3', '3-5', '5-0', '0-4',
+    '4-1', '1-3', '3-0', '0-6',
+    '6-3', '3-3', '3-2', '2-0',
+    '0-1', '1-6', '6-6', '6-4',
+    '4-2', '2-1', '1-1', '1-5',
+    '5-4', '4-4'
+  ],
+  jogadas: [
+    { jogador: 2, pedra: '6-6' },
+    { jogador: 3, pedra: '1-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '0-1', lado: 'esquerda' },
+    { jogador: 1, pedra: '6-4', lado: 'direita' },
+    { jogador: 2, pedra: '4-2', lado: 'direita' },
+    { jogador: 3, pedra: '2-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-2', lado: 'esquerda' },
+    { jogador: 1, pedra: '3-3', lado: 'esquerda' },
+    { jogador: 2, pedra: '6-3', lado: 'esquerda' },
+    { jogador: 3, pedra: '0-6', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-0', lado: 'esquerda' },
+    { jogador: 1, pedra: '2-1', lado: 'direita' },
+    { jogador: 2, pedra: '1-1', lado: 'direita' },
+    { jogador: 3, pedra: '1-3', lado: 'esquerda' },
+    { jogador: 1, pedra: '4-1', lado: 'esquerda' },
+    { jogador: 2, pedra: '0-4', lado: 'esquerda' },
+    { jogador: 3, pedra: '5-0', lado: 'esquerda' },
+    { jogador: 4, pedra: '3-5', lado: 'esquerda' },
+    { jogador: 3, pedra: '1-5', lado: 'direita' },
+    { jogador: 4, pedra: '5-4', lado: 'direita' },
+    { jogador: 1, pedra: '4-4', lado: 'direita' },
+    { jogador: 4, pedra: '4-3', lado: 'esquerda' }
+  ]
+}
+
+Jogada recebida:
+{}
+
+Jogador 4 passou a vez.
+
+Todos os jogadores passaram a vez e a partida terminou empatada.
+
+
+  Jogador 1: 12 pontos.
+  Jogador 2: 18 pontos.
+  Jogador 3: 10 pontos.
+  Jogador 4: 0 pontos.
+Jogadores 2 e 4 ganharam com 18 pontos contra 22 pontos dos jogadores 1 e 3.
+Vencedor: bot2.
+
+Parando container do jogador 1...
+Parando container do jogador 2...
+Parando container do jogador 3...
+Parando container do jogador 4...
