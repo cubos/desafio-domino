@@ -30,6 +30,7 @@ ROUNDS.times do |round_i|
     Thread.new do
       result = `node run_domino.js --bot1 bots/#{pair[0]} --bot2 bots/#{pair[1]} --verbose --no-colors --port-base #{5500 + 5*i} #{round_i == 0 ? "" : "--no-build"}`
       File.write("logs/round #{"%03d" % (round_i+1)} -- #{pair[0]} vs #{pair[1]}.txt", result)
+      result =~ /Vencedor: (.*)\./
       winner = pair[$1 == "bot1" ? 0 : 1]
       results[pair[0]][pair[1]] = winner
       results[pair[1]][pair[0]] = winner

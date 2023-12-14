@@ -30,6 +30,7 @@ const options = {
   colors: true,
   portBase: 5550,
   build: true,
+  buildOnly: false,
 }
 
 function showHelp() {
@@ -45,6 +46,7 @@ function showHelp() {
   console.log("  --port-base <n>  Porta base para os containers dos bots. O padrão é 5550.");
   console.log("  --no-build       Não constrói as imagens Docker dos bots. Use esta opção se você já");
   console.log("                   construiu as imagens anteriormente.");
+  console.log("  --build-only     Constrói as imagens Docker dos bots e encerra.");
   process.exit(0);
 }
 
@@ -94,6 +96,10 @@ for (let i = 2; i < process.argv.length; ++i) {
       options.build = false;
       break;
     }
+    case "--build-only": {
+      options.buildOnly = true;
+      break;
+    }
     case "--games": {
       if (i + 1 >= process.argv.length) {
         console.error("Argumento faltando para --games.");
@@ -139,6 +145,10 @@ if (options.build) {
   console.log();
 }
 
+if (options.buildOnly) {
+  process.exit(0);
+}
+
 const jogadores = [
   { bot: 1, image: image1, path: options.bot1Path },
   { bot: 2, image: image2, path: options.bot2Path },
@@ -182,7 +192,7 @@ console.log(options.games === 1 ? "Iniciando partida..." : "Iniciando campeonato
 console.log()
 
 // Espera os containers estarem prontos e inicia a partida
-setTimeout(main, 4000)
+setTimeout(main, 9000)
 
 // Utilitário para fazer requisições POST com JSON
 async function postJson(hostname, port, body, retries = 3) {
