@@ -1,18 +1,18 @@
 BOTS = ARGV[0...2]
 LEN = BOTS.map(&:size).max
-ROUNDS = 3
-GAMES_PER_ROUND = 5
+ROUNDS = 5
+GAMES_PER_ROUND = 20
 WIDTH = 50
 
 system "mkdir -p logs"
-# system "node run_domino.js --bot1 bots/#{BOTS[0]} --bot2 bots/#{BOTS[1]} --build-only"
+system "node run_domino.js --bot1 bots/#{BOTS[0]} --bot2 bots/#{BOTS[1]} --build-only"
 
 wins = { BOTS[0] => 0, BOTS[1] => 0 }
 
 ROUNDS.times do |round_i|
   threads = (0...GAMES_PER_ROUND).map do |game_i|
     Thread.new do
-      sleep game_i
+      sleep game_i * 0.5
       result = `node run_domino.js --bot1 bots/#{BOTS[0]} --bot2 bots/#{BOTS[1]} --verbose --no-colors --port-base #{5500 + 5*game_i} --no-build`
       File.write("logs/round #{"%03d" % (round_i+1)} -- jogo #{"%03d" % (game_i+1)} -- #{BOTS[0]} vs #{BOTS[1]}.txt", result)
       result =~ /Vencedor: (.*)\./
@@ -53,12 +53,11 @@ ROUNDS.times do |round_i|
   puts
   puts
 
-  games = GAMES_PER_ROUND * (round_i + 1)
   wins[BOTS[0]] += threads.count { |t| t.value == "bot1" }
   wins[BOTS[1]] += threads.count { |t| t.value == "bot2" }
 
   BOTS.sort_by { |k, v| [-wins[k], k] }.each do |k|
-    puts "#{k}:#{" " * (LEN-k.size)} #{wins[k]}/#{games}"
+    puts "#{k}:#{" " * (LEN-k.size)} #{wins[k]}/#{wins[BOTS[0]]+wins[BOTS[1]]}"
   end
   puts
 end

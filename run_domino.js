@@ -14,7 +14,7 @@ function run(command, args, options) {
   const result = child_process.spawnSync(command, args, options);
 
   if (result.status !== 0 || result.signal) {
-    console.error("Failed.");
+    console.error("Failed:", command, args.join(" "));
     process.exit(1);
   }
 
@@ -170,7 +170,7 @@ jogadores[4].port = options.portBase + 4;
 for (let i = 1; i <= 4; ++i) {
   console.log(`Iniciando container do jogador ${i}... ${jogadores[i].path}`);
 
-  const id = run("docker", ["run", "--rm", "-d", "--memory=1g", "--memory-swap=1g", "--cpus=1", "-p", `${jogadores[i].port}:8000`, jogadores[i].image]).stdout.toString().trim();
+  const id = run("docker", ["run", "--rm", "-d", "--memory=1g", "--cpus=1", "-p", `${jogadores[i].port}:8000`, jogadores[i].image]).stdout.toString().trim();
 
   jogadores[i].containerId = id;
 }
@@ -195,7 +195,7 @@ console.log()
 setTimeout(main, 9000)
 
 // Utilitário para fazer requisições POST com JSON
-async function postJson(hostname, port, body, retries = 3) {
+async function postJson(hostname, port, body) {
   return new Promise((resolve, reject) => {
     const req = http.request({
       hostname,
@@ -215,11 +215,8 @@ async function postJson(hostname, port, body, retries = 3) {
     req.write(JSON.stringify(body));
     req.end();
   }).catch(async err => {
-    if (retries > 0) {
-      await new Promise(resolve => setTimeout(resolve, 100));
-      return postJson(hostname, port, body, retries - 1);
-    }
-    throw err;
+    await new Promise(resolve => setTimeout(resolve, 100));
+    return postJson(hostname, port, body);
   });
 }
 
@@ -409,7 +406,7 @@ async function runGame() {
     infoLog(`Jogadores 2 e 4 ganharam com ${equipe2} pontos contra ${equipe1} pontos dos jogadores 1 e 3.`);
     return 2;
   } else {
-    const ultimo = jogadas.at(-1).jogador;
+    const ultimo = jogadas[jogadas.length - 1].jogador;
 
     infoLog(`As duas equipes tem a mesma quantidade de pontos. Jogador ${ultimo} foi o último a jogar perde a partida.`);
 
